@@ -1,5 +1,8 @@
+"use client";
+import StocksList from "@/components/stocks/list/list";
+
 const StocksPage = () => {
-  return <>Showing the Stock page</>;
+  return <StocksList />;
 };
 
 export default StocksPage;
