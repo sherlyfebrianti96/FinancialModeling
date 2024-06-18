@@ -16,7 +16,7 @@ export default async function fetcher(
   }
 
   // const response = await fetch(`${baseUrl}${input}?apikey=${apikey}`, {
-  const response = await fetch(input, {
+  const response = await fetch(`${input}?t=${new Date().getTime()}`, {
     method,
     credentials: "include",
     headers: {
