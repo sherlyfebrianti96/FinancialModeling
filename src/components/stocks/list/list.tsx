@@ -15,9 +15,9 @@ import {
 import { ChangeEvent, MouseEvent, useState } from "react";
 
 const StocksList = () => {
-    const optionsForItemPerPage = [5, 10, 25, 50, 100, 500, 1000];
+  const optionsForItemPerPage = [5, 10, 25, 50, 100, 500, 1000];
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [itemPerPage, setItemPerPage] = useState(optionsForItemPerPage[0]);
 
   const stocks = useGetStocksWithPagination(page, itemPerPage);
@@ -50,7 +50,7 @@ const StocksList = () => {
             count={stocks.totalRecord}
             rowsPerPageOptions={optionsForItemPerPage}
             rowsPerPage={itemPerPage}
-            page={page - 1}
+            page={page}
             onPageChange={onChangePage}
             onRowsPerPageChange={onChangeItemPerPage}
           />

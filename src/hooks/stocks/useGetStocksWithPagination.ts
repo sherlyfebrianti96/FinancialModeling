@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useGetStocks } from "./useGetStocks";
 
 export const useGetStocksWithPagination = (
@@ -8,9 +9,10 @@ export const useGetStocksWithPagination = (
 
   return {
     isLoading: stocks.isLoading,
+    isError: stocks.isError,
     data: stocks.data?.slice(
-      (currentPage - 1) * numberOfItemPerPage,
-      currentPage * numberOfItemPerPage
+      currentPage * numberOfItemPerPage,
+      (currentPage + 1) * numberOfItemPerPage
     ),
     totalRecord: stocks.data?.length || 0,
   };
