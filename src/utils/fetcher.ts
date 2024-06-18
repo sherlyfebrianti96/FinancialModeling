@@ -1,7 +1,7 @@
 "use client";
 
 const baseUrl = "https://financialmodelingprep.com/api/v3/";
-const apikey = "l9BzWSMFaAuyks4QZsB4dFrCFdQuNDOF";
+const apikey = "995ee501599621364f074efeb884297c";
 
 export default async function fetcher(
   input: string,
@@ -29,5 +29,5 @@ export default async function fetcher(
     return response.json();
   }
 
-  return response;
+  throw new Error(`Error : ${response.status} ${response.statusText}`);
 }

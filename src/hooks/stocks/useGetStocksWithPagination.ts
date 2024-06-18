@@ -9,6 +9,7 @@ export const useGetStocksWithPagination = (
   return {
     isLoading: stocks.isLoading,
     data: stocks.data?.slice(
+    data: (stocks.isLoading ? [] : stocks.data)?.slice(
       (currentPage - 1) * numberOfItemPerPage,
       currentPage * numberOfItemPerPage
     ),
