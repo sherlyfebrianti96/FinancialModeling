@@ -1,7 +1,5 @@
 import { Stock } from "@/model/stock";
 import fetcher from "@/utils/fetcher";
-import { persistQueryClient } from "@tanstack/query-persist-client-core";
-import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const STOCKS_IDENTIFIER = "stocks2";
