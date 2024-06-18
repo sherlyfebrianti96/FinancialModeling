@@ -96,6 +96,10 @@ a {
   text-decoration: none;
 }
 
+.MuiTableHead-root th {
+  font-weight: bold;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
