@@ -15,8 +15,7 @@ import {
 import { ChangeEvent, MouseEvent, useState } from "react";
 
 const StocksList = () => {
-  //   const optionsForItemPerPage = [5, 10, 25, 50, 100, 500, 1000];
-  const optionsForItemPerPage = [100, 500, 1000];
+    const optionsForItemPerPage = [5, 10, 25, 50, 100, 500, 1000];
 
   const [page, setPage] = useState(1);
   const [itemPerPage, setItemPerPage] = useState(optionsForItemPerPage[0]);
@@ -39,7 +38,6 @@ const StocksList = () => {
       <Paper
         sx={{
           width: "100%",
-          height: "calc(100vh - 150px)",
           maxHeight: "calc(100vh - 150px)",
           display: "flex",
           flexDirection: "column",
