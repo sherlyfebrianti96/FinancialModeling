@@ -1,8 +1,5 @@
 "use client";
 
-const baseUrl = "https://financialmodelingprep.com/api/v3/";
-const apikey = "995ee501599621364f074efeb884297c";
-
 export default async function fetcher(
   input: string,
   method: string = "GET",
@@ -15,8 +12,7 @@ export default async function fetcher(
     input.slice(0, -1);
   }
 
-  // const response = await fetch(`${baseUrl}${input}?apikey=${apikey}`, {
-  const response = await fetch(`${input}?t=${new Date().getTime()}`, {
+  const response = await fetch(input, {
     method,
     credentials: "include",
     headers: {
