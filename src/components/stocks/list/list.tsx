@@ -1,3 +1,4 @@
+import { CommonSearch } from "@/components/common/search";
 import { useGetStocksWithPagination } from "@/hooks/stocks/useGetStocksWithPagination";
 import {
   Box,
@@ -17,10 +18,12 @@ import { ChangeEvent, MouseEvent, useState } from "react";
 const StocksList = () => {
   const optionsForItemPerPage = [5, 10, 25, 50, 100, 500, 1000];
 
+  const [search, setSearch] = useState("");
+
   const [page, setPage] = useState(0);
   const [itemPerPage, setItemPerPage] = useState(optionsForItemPerPage[0]);
 
-  const stocks = useGetStocksWithPagination(page, itemPerPage);
+  const stocks = useGetStocksWithPagination(page, itemPerPage, search);
 
   const onChangePage = (
     _: MouseEvent<HTMLButtonElement> | null,
@@ -35,16 +38,25 @@ const StocksList = () => {
 
   return (
     <>
+      <Typography
+        variant="h5"
+        mb={2}
+        sx={{ display: { xs: "none", md: "block" } }}
+      >
+        List of Stocks
+      </Typography>
       <Paper
         sx={{
           width: "100%",
-          maxHeight: "calc(100vh - 150px)",
+          maxHeight: { xs: "calc(100vh - 150px)", md: "calc(100vh - 200px)" },
           display: "flex",
           flexDirection: "column",
         }}
       >
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography variant="h6">List of Stocks</Typography>
+          <Box mx={1}>
+            <CommonSearch size="small" onChange={setSearch} />
+          </Box>
           <TablePagination
             component="div"
             count={stocks.totalRecord}
