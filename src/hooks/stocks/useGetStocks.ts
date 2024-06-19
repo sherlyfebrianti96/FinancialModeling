@@ -10,15 +10,17 @@ export const useGetStocks = () => {
   const queryClient = useQueryClient();
 
   const getStocks = async () => {
-    const cachedData = queryClient.getQueryData([
-      STOCKS_IDENTIFIER,
-    ]) as Array<Stock>;
-    if (cachedData && cachedData.length > 0) {
-      return cachedData;
-    }
+    // const cachedData = queryClient.getQueryData([
+    //   STOCKS_IDENTIFIER,
+    // ]) as Array<Stock>;
+    // if (cachedData && cachedData.length > 0) {
+    //   return cachedData;
+    // }
 
     try {
-      return await fetcher(`/stock/list`);
+      // return await fetcher(`/stock/list`);
+
+      return await fetcher("/stocks.json");
     } catch (error) {
       /* Throw error : Failed to fetch the list of stocks */
     }
