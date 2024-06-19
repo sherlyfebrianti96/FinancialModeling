@@ -1,7 +1,5 @@
+import { REDIS_TTL } from "@/constants/redis";
 import Redis from "ioredis";
-
-/* Store the data for 24 hours */
-const ttl = 86400;
 
 export async function GET() {
   try {
@@ -20,7 +18,7 @@ export async function GET() {
     const apiData = await fetchStockDataFromExternalAPI();
 
     /* Store data in Redis cache */
-    await redis.set("stocks", JSON.stringify(apiData), "EX", ttl);
+    await redis.set("stocks", JSON.stringify(apiData), "EX", REDIS_TTL);
 
     return Response.json(apiData, { status: 200 });
   } catch (error) {
