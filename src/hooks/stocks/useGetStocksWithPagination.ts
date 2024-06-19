@@ -12,22 +12,20 @@ export const useGetStocksWithPagination = (
 
   const keyword = searchKeyword.toLowerCase().trim();
 
-  const paginatedStocks = data
-    ?.filter((stock) =>
-      keyword
-        ? stock.symbol?.toLowerCase().includes(keyword) ||
-          stock.name?.toLowerCase().includes(keyword)
-        : true
-    )
-    ?.slice(
-      currentPage * numberOfItemPerPage,
-      (currentPage + 1) * numberOfItemPerPage
-    );
+  const paginatedStocks = data?.filter((stock) =>
+    keyword
+      ? stock.symbol?.toLowerCase().includes(keyword) ||
+        stock.name?.toLowerCase().includes(keyword)
+      : true
+  );
 
   return {
     isLoading: stocks.isLoading,
     isError: stocks.isError,
-    data: paginatedStocks,
-    totalRecord: stocks.data?.length || 0,
+    data: paginatedStocks?.slice(
+      currentPage * numberOfItemPerPage,
+      (currentPage + 1) * numberOfItemPerPage
+    ),
+    totalRecord: paginatedStocks?.length || 0,
   };
 };
