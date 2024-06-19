@@ -1,13 +1,11 @@
 import { Stock } from "@/model/stock";
 import fetcher from "@/utils/fetcher";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const STOCKS_IDENTIFIER = "stocks2";
 
 export const useGetStocks = () => {
   const defaultStocks: Array<Stock> = [];
-
-  const queryClient = useQueryClient();
 
   const getStocks = async () => {
     try {
