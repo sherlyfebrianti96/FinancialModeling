@@ -31,7 +31,11 @@ const apikey = "ForD4Xf0vgQ08zEtbdZaFnQI25hdjX1m";
 
 async function fetchStockDataFromExternalAPI() {
   try {
-    const input = `stock/list`;
+    /**
+     * Supposed to use this `stock/list` to show all Data and combining it with `profile/${symbol}`.
+     * However, I used data from NASDAQ exchange only, because the free API Key is limited to US Stock only.
+     */
+    const input = `symbol/NASDAQ`;
     const response = await fetch(`${baseUrl}${input}?apikey=${apikey}`, {
       cache: "no-store",
     });
