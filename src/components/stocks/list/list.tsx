@@ -37,6 +37,11 @@ const StocksList = () => {
     setPage(0);
   };
 
+  const onChangeSearch = (keyword: string) => {
+    setSearch(keyword);
+    setPage(0);
+  };
+
   return (
     <>
       <Typography
@@ -56,7 +61,7 @@ const StocksList = () => {
       >
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Box mx={1}>
-            <CommonSearch size="small" onChange={setSearch} />
+            <CommonSearch size="small" onChange={onChangeSearch} />
           </Box>
           <TablePagination
             component="div"
