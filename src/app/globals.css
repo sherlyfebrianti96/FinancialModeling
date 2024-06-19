@@ -85,9 +85,19 @@ body {
   overflow-x: hidden;
 }
 
+body {
+  max-height: 100vh;
+  min-height: 100vh;
+  overflow: auto;
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.MuiTableHead-root th {
+  font-weight: bold;
 }
 
 @media (prefers-color-scheme: dark) {

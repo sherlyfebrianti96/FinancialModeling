@@ -1,6 +1,5 @@
 const NewsPage = () => {
-    return <>Showing the News page</>;
-  };
-  
-  export default NewsPage;
-  
+  return <>Showing the News page</>;
+};
+
+export default NewsPage;

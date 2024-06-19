@@ -5,13 +5,12 @@ import {
   AppBar,
   Box,
   Container,
-  Grid,
-  IconButton,
   Toolbar,
   Typography,
 } from "@mui/material";
 import { Adb } from "@mui/icons-material";
 import Link from "next/link";
+import AppProviders from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -60,7 +59,7 @@ export default function RootLayout({
         </AppBar>
         <Container maxWidth="xl" sx={{ paddingY: 5 }}>
           <Toolbar />
-          {children}
+          <AppProviders>{children}</AppProviders>
         </Container>
       </body>
     </html>
