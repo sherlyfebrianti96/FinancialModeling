@@ -82,8 +82,8 @@ const StocksList = () => {
                 <TableCell>Symbol</TableCell>
                 <TableCell>Name</TableCell>
                 <TableCell align="center">Price</TableCell>
-                <TableCell align="center">Change</TableCell>
-                <TableCell align="center">Change %</TableCell>
+                <TableCell align="right">Change</TableCell>
+                <TableCell align="right">Change %</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
