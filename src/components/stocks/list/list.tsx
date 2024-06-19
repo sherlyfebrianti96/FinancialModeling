@@ -34,6 +34,7 @@ const StocksList = () => {
 
   const onChangeItemPerPage = (evt: ChangeEvent<HTMLInputElement>) => {
     setItemPerPage(Number(evt.target.value));
+    setPage(0);
   };
 
   return (
