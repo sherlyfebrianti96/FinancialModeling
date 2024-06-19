@@ -14,6 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import { ChangeEvent, MouseEvent, useState } from "react";
+import StocksListItem from "./item";
 
 const StocksList = () => {
   const optionsForItemPerPage = [5, 10, 25, 50, 100, 500, 1000];
@@ -80,25 +81,14 @@ const StocksList = () => {
               <TableRow>
                 <TableCell>Symbol</TableCell>
                 <TableCell>Name</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Change</TableCell>
-                <TableCell>Change %</TableCell>
+                <TableCell align="center">Price</TableCell>
+                <TableCell align="right">Change</TableCell>
+                <TableCell align="right">Change %</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {stocks.data?.map((stock) => (
-                <TableRow
-                  hover
-                  role="checkbox"
-                  tabIndex={-1}
-                  key={stock.symbol}
-                >
-                  <TableCell>{stock.symbol}</TableCell>
-                  <TableCell>{stock.name}</TableCell>
-                  <TableCell>{stock.price}</TableCell>
-                  <TableCell>{stock.exchange}</TableCell>
-                  <TableCell>{stock.exchangeShortName}</TableCell>
-                </TableRow>
+                <StocksListItem key={stock.symbol} data={stock} />
               ))}
             </TableBody>
           </Table>
