@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import { ChangeEvent, MouseEvent, useState } from "react";
-import StocksListItem from "./item";
+import CommonStatistic from "@/components/common/statistic";
 
 const StocksList = () => {
   const optionsForItemPerPage = [5, 10, 25, 50, 100, 500, 1000];
@@ -88,7 +88,25 @@ const StocksList = () => {
             </TableHead>
             <TableBody>
               {stocks.data?.map((stock) => (
-                <StocksListItem key={stock.symbol} data={stock} />
+                <TableRow
+                  hover
+                  role="checkbox"
+                  tabIndex={-1}
+                  key={stock.symbol}
+                >
+                  <TableCell>{stock.symbol}</TableCell>
+                  <TableCell>{stock.name}</TableCell>
+                  <TableCell align="center">{stock.price}</TableCell>
+                  <TableCell align="right">
+                    <CommonStatistic value={Number(stock.change)} />
+                  </TableCell>
+                  <TableCell align="right">
+                    <CommonStatistic
+                      value={Number(stock.changesPercentage)}
+                      postfix={<>&nbsp;%</>}
+                    />
+                  </TableCell>
+                </TableRow>
               ))}
             </TableBody>
           </Table>
