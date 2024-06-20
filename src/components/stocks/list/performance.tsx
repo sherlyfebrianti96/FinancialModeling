@@ -78,6 +78,37 @@ const StocksListPerformance = ({ ...props }: StocksListPerformanceProps) => {
         type: "line",
         stack: "Total",
         data: sortedHistories?.map((history) => history.close),
+        areaStyle: /* Fill in area */ {
+          color: (() => {
+            if (sortedHistories && sortedHistories.length > 0) {
+              const firstPrice = sortedHistories[0].close;
+              const lastPrice =
+                sortedHistories[sortedHistories.length - 1].close;
+
+              const upTrend = lastPrice > firstPrice;
+              if (upTrend) {
+                return "#6EDDA2";
+              }
+
+              const downTrend = lastPrice < firstPrice;
+              if (downTrend) {
+                return "#F77A93";
+              }
+            }
+            return "#A1D2EA";
+          })(),
+        },
+        markLine: {
+          data: [
+            {
+              type: "average",
+            },
+          ],
+          silent: true,
+          lineStyle: {
+            color: "#5d4037",
+          },
+        },
       },
     ],
   };
