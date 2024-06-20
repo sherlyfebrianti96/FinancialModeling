@@ -8,6 +8,11 @@ This page provides a complete preview of all features.
   <source src="./assets/01. Original Footage.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+<a href="./assets/01. Original Footage.mp4" download="01. Original Footage.mp4">
+  <button style="margin-top: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer;">
+    Download Video
+  </button>
+</a>
 
 # Screenshots
 

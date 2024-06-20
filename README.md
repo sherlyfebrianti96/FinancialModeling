@@ -56,4 +56,9 @@ For a detailed look at each feature, [view the screenshots here](./preview/READM
   <source src="./preview/assets/02. Speedup Footage.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+<a href="./preview/assets/02. Speedup Footage.mp4" download="02. Speedup Footage.mp4">
+  <button style="margin-top: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer;">
+    Download Video
+  </button>
+</a>
 
