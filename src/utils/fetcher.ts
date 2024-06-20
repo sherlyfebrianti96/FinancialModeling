@@ -6,10 +6,10 @@ export default async function fetcher(
   init?: RequestInit
 ) {
   if (input.startsWith("/")) {
-    input.slice(1);
+    input = input.slice(1);
   }
   if (input.endsWith("/")) {
-    input.slice(0, -1);
+    input = input.slice(0, -1);
   }
 
   const response = await fetch(input, {
