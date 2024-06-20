@@ -14,9 +14,10 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { ChangeEvent, MouseEvent, ReactElement, useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import CommonStatistic from "@/components/common/statistic";
 import { Stock } from "@/model/stock";
+import StocksListPerformance from "./performance";
 
 const StocksList = () => {
   const optionsForItemPerPage = [5, 10, 25, 50, 100, 500, 1000];
@@ -123,7 +124,11 @@ const StocksList = () => {
             <TableHead>
               <TableRow>
                 {columns.map((column) => (
-                  <TableCell width={column.width} align={column.align}>
+                  <TableCell
+                    width={column.width}
+                    align={column.align}
+                    key={column.label}
+                  >
                     {column.label}
                   </TableCell>
                 ))}
@@ -131,20 +136,30 @@ const StocksList = () => {
             </TableHead>
             <TableBody>
               {stocks.data?.map((stock) => (
-                <TableRow
-                  hover
-                  role="checkbox"
-                  tabIndex={-1}
-                  key={stock.symbol}
+                <StocksListPerformance
+                  stock={stock}
+                  key={`stock-${stock.name}`}
                 >
-                  {columns.map((column) => (
-                    <TableCell width={column.width} align={column.align}>
-                      {typeof column.value === "function"
-                        ? column.value(stock)
-                        : stock[column.value]}
-                    </TableCell>
-                  ))}
-                </TableRow>
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={stock.symbol}
+                    sx={{ cursor: "pointer" }}
+                  >
+                    {columns.map((column) => (
+                      <TableCell
+                        width={column.width}
+                        align={column.align}
+                        key={`${stock.name}-${column.label}`}
+                      >
+                        {typeof column.value === "function"
+                          ? column.value(stock)
+                          : stock[column.value]}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </StocksListPerformance>
               ))}
             </TableBody>
           </Table>
