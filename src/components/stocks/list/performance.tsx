@@ -175,9 +175,13 @@ const StocksListPerformance = ({ ...props }: StocksListPerformanceProps) => {
                     {histories.isError ? (
                       <Alert severity="error">
                         <AlertTitle>Oops!</AlertTitle>
-                        {histories.error.message.split("\n").map((message) => (
-                          <p>{message}</p>
-                        ))}
+                        {histories.error.message
+                          .split("\n")
+                          .map((message, index) => (
+                            <p key={`histories-error-message-line-${index}`}>
+                              {message}
+                            </p>
+                          ))}
                       </Alert>
                     ) : (
                       <Alert severity="info">

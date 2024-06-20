@@ -152,8 +152,8 @@ const StocksList = () => {
                     variant="filled"
                     sx={{ width: "100%" }}
                   >
-                    {stocks.error?.message.split("\n").map((message) => (
-                      <p>{message}</p>
+                    {stocks.error?.message.split("\n").map((message, index) => (
+                      <p key={`stock-error-message-line-${index}`}>{message}</p>
                     ))}
                   </Alert>
                 </Snackbar>
