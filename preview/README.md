@@ -79,3 +79,8 @@ This page provides a complete preview of all features.
 
 > This issue also fixed on https://github.com/sherlyfebrianti96/FinancialModeling/pull/4
 
+#### Handle empty historical data for Stock Performance from the past 30 days
+
+| <img src="./assets/011 Empty historical data for Stock Performance from the past 30 days.png" alt="Empty historical data for Stock Performance from the past 30 days" style="width: 100%;">
+|- 
+
