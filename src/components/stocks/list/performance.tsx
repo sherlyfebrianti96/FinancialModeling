@@ -1,6 +1,8 @@
 import { useGetStockHistoricalChart } from "@/hooks/stocks/useGetStockHistoricalChart";
 import { Stock } from "@/model/stock";
 import {
+  Alert,
+  AlertTitle,
   Box,
   Dialog,
   DialogContent,
@@ -146,8 +148,18 @@ const StocksListPerformance = ({ ...props }: StocksListPerformanceProps) => {
             <Close />
           </IconButton>
 
-          <DialogContent sx={{ minWidth: "80%" }}>
-            <CommonLineChart option={option} />
+          <DialogContent sx={{ minWidth: "80%", minHeight: "400px" }}>
+            {!histories.isLoading &&
+            histories.data &&
+            histories.data.length > 0 ? (
+              <CommonLineChart option={option} />
+            ) : (
+              <Alert severity="info">
+                <AlertTitle>Info</AlertTitle>
+                There is no historical data available for {props.stock.symbol}
+                &nbsp;from the past 30 days.
+              </Alert>
+            )}
           </DialogContent>
         </Dialog>
       </>
