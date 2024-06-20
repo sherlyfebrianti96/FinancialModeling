@@ -1,5 +1,27 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Getting Started
+
+You can get started with 2 options :
+- Via Docker Compose
+- Manual Installation
+
+## Play App
+
+After the app is ready, you can open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+# Via Docker Compose
+
+```
+/* Build the Docker Image */
+docker-compose build
+
+/* Run the Docker containers */
+docker-compose up
+```
+
+# Manual Installation
+
 ## Prerequisite
 
 Before running the application, we need to prepare our local environment first.
@@ -32,21 +54,7 @@ brew services start redis
 
 For other operating systems, refer to the Redis installation guide available at https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/.
 
-## Getting Started
-
-You can get started with 2 options
-
-### Via Docker Compose
-
-```
-/* Build the Docker Image */
-docker-compose build
-
-/* Run the Docker containers */
-docker-compose up
-```
-
-### Manual installation
+## Install the app
 
 First, install all dependencies:
 
@@ -66,11 +74,7 @@ pnpm dev
 bun dev
 ```
 
-### Play App
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Feature Preview : Stock Listing
+# Feature Preview : Stock Listing
 
 For a detailed look at each feature, [view the screenshots here](./preview/README.md).
 
