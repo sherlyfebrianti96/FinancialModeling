@@ -34,6 +34,20 @@ For other operating systems, refer to the Redis installation guide available at 
 
 ## Getting Started
 
+You can get started with 2 options
+
+### Via Docker Compose
+
+```
+/* Build the Docker Image */
+docker-compose build
+
+/* Run the Docker containers */
+docker-compose up
+```
+
+### Manual installation
+
 First, install all dependencies:
 
 ```
@@ -51,6 +65,8 @@ pnpm dev
 # or
 bun dev
 ```
+
+### Play App
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
