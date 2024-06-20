@@ -52,6 +52,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 For a detailed look at each feature, [view the screenshots here](./preview/README.md).
 
+https://github.com/sherlyfebrianti96/FinancialModeling/assets/2855979/aa4c01f8-292f-4e55-ae50-fe371cc059af
+
 <video width="100%" controls>
   <source src="./preview/assets/02. Speedup Footage.mp4" type="video/mp4">
   Your browser does not support the video tag.
