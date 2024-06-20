@@ -6,10 +6,10 @@ export default async function fetcher(
   init?: RequestInit
 ) {
   if (input.startsWith("/")) {
-    input.slice(1);
+    input = input.slice(1);
   }
   if (input.endsWith("/")) {
-    input.slice(0, -1);
+    input = input.slice(0, -1);
   }
 
   const response = await fetch(input, {
@@ -24,6 +24,14 @@ export default async function fetcher(
 
   if (response.ok) {
     return response.json();
+  }
+
+  const isContentTypeJson = response.headers
+    .get("content-type")
+    ?.includes("application/json");
+  if (isContentTypeJson) {
+    const error = await response.json();
+    throw new Error(error.message);
   }
 
   throw new Error(`Error : ${response.status} ${response.statusText}`);

@@ -12,18 +12,22 @@ export const useGetStocksWithPagination = (
 
   const keyword = searchKeyword.toLowerCase().trim();
 
-  const paginatedStocks = data?.filter(
-    (stock) =>
-      stock.price /* Handling the empty price */ &&
-      (keyword
-        ? stock.symbol?.toLowerCase().includes(keyword) ||
-          stock.name?.toLowerCase().includes(keyword)
-        : true)
-  );
+  const paginatedStocks =
+    data && data.length > 0
+      ? data.filter(
+          (stock) =>
+            stock.price /* Handling the empty price */ &&
+            (keyword
+              ? stock.symbol?.toLowerCase().includes(keyword) ||
+                stock.name?.toLowerCase().includes(keyword)
+              : true)
+        )
+      : [];
 
   return {
     isLoading: stocks.isLoading,
     isError: stocks.isError,
+    error: stocks.error,
     data: paginatedStocks?.slice(
       currentPage * numberOfItemPerPage,
       (currentPage + 1) * numberOfItemPerPage

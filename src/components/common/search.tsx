@@ -2,7 +2,6 @@ import { Search } from "@mui/icons-material";
 import {
   FormControl,
   FormControlOwnProps,
-  IconButton,
   InputAdornment,
   InputLabel,
   OutlinedInput,

@@ -1,9 +1,11 @@
 import { CommonSearch } from "@/components/common/search";
 import { useGetStocksWithPagination } from "@/hooks/stocks/useGetStocksWithPagination";
 import {
+  Alert,
   Box,
   Divider,
   Paper,
+  Snackbar,
   Table,
   TableBody,
   TableCell,
@@ -18,6 +20,8 @@ import { ChangeEvent, MouseEvent, useState } from "react";
 import CommonStatistic from "@/components/common/statistic";
 import { Stock } from "@/model/stock";
 import StocksListPerformance from "./performance";
+import { CommonSkeleton } from "@/components/common/skeleton";
+import { RequestPageOutlined } from "@mui/icons-material";
 
 const StocksList = () => {
   const optionsForItemPerPage = [5, 10, 25, 50, 100, 500, 1000];
@@ -135,32 +139,94 @@ const StocksList = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {stocks.data?.map((stock) => (
-                <StocksListPerformance
-                  stock={stock}
-                  key={`stock-${stock.name}`}
+              {stocks.isError && (
+                <Snackbar
+                  open
+                  anchorOrigin={{
+                    horizontal: "center",
+                    vertical: "bottom",
+                  }}
                 >
-                  <TableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={stock.symbol}
-                    sx={{ cursor: "pointer" }}
+                  <Alert
+                    severity="error"
+                    variant="filled"
+                    sx={{ width: "100%" }}
                   >
-                    {columns.map((column) => (
-                      <TableCell
-                        width={column.width}
-                        align={column.align}
-                        key={`${stock.name}-${column.label}`}
-                      >
-                        {typeof column.value === "function"
-                          ? column.value(stock)
-                          : stock[column.value]}
-                      </TableCell>
+                    {stocks.error?.message.split("\n").map((message, index) => (
+                      <p key={`stock-error-message-line-${index}`}>{message}</p>
                     ))}
-                  </TableRow>
-                </StocksListPerformance>
-              ))}
+                  </Alert>
+                </Snackbar>
+              )}
+              {stocks.isLoading ? (
+                <>
+                  {[...Array(itemPerPage)].map((_, index) => (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      key={`loading-${index}`}
+                      sx={{ cursor: "pointer" }}
+                    >
+                      {columns.map((column) => (
+                        <TableCell
+                          width={column.width}
+                          align={column.align}
+                          key={`loading-${index}-${column.label}`}
+                        >
+                          <CommonSkeleton />
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {stocks.data && stocks.data.length > 0 ? (
+                    <>
+                      {stocks.data?.map((stock) => (
+                        <StocksListPerformance
+                          stock={stock}
+                          key={`stock-${stock.symbol}`}
+                        >
+                          <TableRow
+                            hover
+                            role="checkbox"
+                            key={stock.symbol}
+                            sx={{ cursor: "pointer" }}
+                          >
+                            {columns.map((column) => (
+                              <TableCell
+                                width={column.width}
+                                align={column.align}
+                                key={`${stock.symbol}-${column.label}`}
+                              >
+                                {typeof column.value === "function"
+                                  ? column.value(stock)
+                                  : stock[column.value]}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                        </StocksListPerformance>
+                      ))}
+                    </>
+                  ) : (
+                    <TableRow hover role="checkbox">
+                      <TableCell
+                        colSpan={5}
+                        align="center"
+                        height={260}
+                        sx={{ color: "#787878", background: "#efefef" }}
+                      >
+                        <RequestPageOutlined
+                          sx={{ color: "#898989", fontSize: "40px" }}
+                        />
+                        <br />
+                        No data
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </>
+              )}
             </TableBody>
           </Table>
         </TableContainer>
