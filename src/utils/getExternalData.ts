@@ -32,8 +32,6 @@ const getExternalData = async ({
     /* Fetch data from external API */
     const apiData = await fetchDataFromExternalAPI(apiPath, apiParams);
 
-    console.log("debug apiData : ", apiData);
-
     if (apiData["Error Message"]) {
       return Response.json(
         {
@@ -66,11 +64,6 @@ async function fetchDataFromExternalAPI(
   }
   const paramsObj = { apikey: API_KEY, ...params };
   const searchParams = new URLSearchParams(paramsObj);
-
-  console.log(
-    "debug `${API_BASE_URL}${input}?${searchParams.toString()}` : ",
-    `${API_BASE_URL}${input}?${searchParams.toString()}`
-  );
 
   try {
     /**

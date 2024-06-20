@@ -2,7 +2,6 @@ import { CommonSearch } from "@/components/common/search";
 import { useGetStocksWithPagination } from "@/hooks/stocks/useGetStocksWithPagination";
 import {
   Alert,
-  AlertTitle,
   Box,
   Divider,
   Paper,
@@ -22,7 +21,7 @@ import CommonStatistic from "@/components/common/statistic";
 import { Stock } from "@/model/stock";
 import StocksListPerformance from "./performance";
 import { CommonSkeleton } from "@/components/common/skeleton";
-import { Height, RequestPageOutlined } from "@mui/icons-material";
+import { RequestPageOutlined } from "@mui/icons-material";
 
 const StocksList = () => {
   const optionsForItemPerPage = [5, 10, 25, 50, 100, 500, 1000];
