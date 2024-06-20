@@ -17,6 +17,15 @@ export async function GET() {
     /* Fetch data from external API */
     const apiData = await fetchStockDataFromExternalAPI();
 
+    if (apiData["Error Message"]) {
+      return Response.json(
+        {
+          message: `\nFailed to fetch Stocks from external API:\n${apiData["Error Message"]}`,
+        },
+        { status: 500 }
+      );
+    }
+
     /* Store data in Redis cache */
     await redis.set("stocks", JSON.stringify(apiData), "EX", REDIS_TTL);
 

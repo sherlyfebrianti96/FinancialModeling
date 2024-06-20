@@ -26,5 +26,13 @@ export default async function fetcher(
     return response.json();
   }
 
+  const isContentTypeJson = response.headers
+    .get("content-type")
+    ?.includes("application/json");
+  if (isContentTypeJson) {
+    const error = await response.json();
+    throw new Error(error.message);
+  }
+
   throw new Error(`Error : ${response.status} ${response.statusText}`);
 }

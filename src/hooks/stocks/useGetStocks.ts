@@ -2,18 +2,11 @@ import { Stock } from "@/model/stock";
 import fetcher from "@/utils/fetcher";
 import { useQuery } from "@tanstack/react-query";
 
-const STOCKS_IDENTIFIER = "stocks2";
+const STOCKS_IDENTIFIER = "stocks";
 
 export const useGetStocks = () => {
-  const defaultStocks: Array<Stock> = [];
-
   const getStocks = async () => {
-    try {
-      return await fetcher(`/api/stocks`);
-    } catch (error) {
-      /* Throw error : Failed to fetch the list of stocks */
-    }
-    return defaultStocks;
+    return await fetcher(`/api/stocks`);
   };
 
   return useQuery<Array<Stock>, Error>({
@@ -21,5 +14,6 @@ export const useGetStocks = () => {
     queryFn: async () => {
       return await getStocks();
     },
+    retry: 1,
   });
 };

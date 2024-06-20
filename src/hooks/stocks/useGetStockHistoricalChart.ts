@@ -4,13 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 
 const STOCKS_IDENTIFIER = "stocks";
 
-export const useGetStockHistoricalChart = (stockSymbol: string) => {
+export const useGetStockHistoricalChart = (
+  stockSymbol: string,
+  enabled: boolean
+) => {
   const getStockHistoricalChart = async () => {
-    try {
-      return await fetcher(`/api/stocks/${stockSymbol}/historical-chart`);
-    } catch (error) {
-      /* Throw error : Failed to fetch the list of stocks */
-    }
+    return await fetcher(`/api/stocks/${stockSymbol}/historical-chart`);
   };
 
   return useQuery<Array<StockHistoricalChart>, Error>({
@@ -18,5 +17,8 @@ export const useGetStockHistoricalChart = (stockSymbol: string) => {
     queryFn: async () => {
       return await getStockHistoricalChart();
     },
+    /* Limit retry only 1 time to avoid long waiting time */
+    retry: 1,
+    enabled,
   });
 };

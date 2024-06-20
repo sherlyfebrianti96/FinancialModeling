@@ -4,17 +4,19 @@ import {
   Alert,
   AlertTitle,
   Box,
+  CircularProgress,
   Dialog,
   DialogContent,
   DialogTitle,
   IconButton,
   Tooltip,
 } from "@mui/material";
-import { ReactElement, cloneElement, useState } from "react";
+import { ReactElement, cloneElement, useMemo, useState } from "react";
 import CommonLineChart from "@/components/common/line-chart";
 import { isBefore, lightFormat } from "date-fns";
 import { Close } from "@mui/icons-material";
 import { EChartOption } from "echarts";
+import { CommonSkeleton } from "@/components/common/skeleton";
 
 interface StocksListPerformanceProps {
   children: ReactElement<any>;
@@ -31,20 +33,29 @@ const StocksListPerformance = ({ ...props }: StocksListPerformanceProps) => {
     setShowPerformance(false);
   };
 
-  const histories = useGetStockHistoricalChart(props.stock.symbol);
+  const histories = useGetStockHistoricalChart(
+    props.stock.symbol,
+    showPerformance
+  );
 
-  const sortedHistories = histories.data?.sort((historyA, historyB) => {
-    const dateA = new Date(historyA.date);
-    const dateB = new Date(historyB.date);
+  const sortedHistories = useMemo(
+    () =>
+      histories.isLoading || histories.isError
+        ? []
+        : histories.data?.sort((historyA, historyB) => {
+            const dateA = new Date(historyA.date);
+            const dateB = new Date(historyB.date);
 
-    if (isBefore(dateA, dateB)) {
-      return -1;
-    } else if (isBefore(dateB, dateA)) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
+            if (isBefore(dateA, dateB)) {
+              return -1;
+            } else if (isBefore(dateB, dateA)) {
+              return 1;
+            } else {
+              return 0;
+            }
+          }),
+    [histories]
+  );
 
   const option: EChartOption = {
     tooltip: {
@@ -148,17 +159,37 @@ const StocksListPerformance = ({ ...props }: StocksListPerformanceProps) => {
             <Close />
           </IconButton>
 
-          <DialogContent sx={{ minWidth: "80%", minHeight: "400px" }}>
-            {!histories.isLoading &&
-            histories.data &&
-            histories.data.length > 0 ? (
-              <CommonLineChart option={option} />
+          <DialogContent sx={{ minWidth: "80%", minHeight: "435px" }}>
+            {histories.isLoading ? (
+              <CommonSkeleton variant="rectangular" width="100%" height="400px">
+                <CircularProgress sx={{ visibility: "visible" }} />
+                <br />
+                Loading historical chart
+              </CommonSkeleton>
             ) : (
-              <Alert severity="info">
-                <AlertTitle>Info</AlertTitle>
-                There is no historical data available for {props.stock.symbol}
-                &nbsp;from the past 30 days.
-              </Alert>
+              <>
+                {histories.data && histories.data.length > 0 ? (
+                  <CommonLineChart option={option} />
+                ) : (
+                  <>
+                    {histories.isError ? (
+                      <Alert severity="error">
+                        <AlertTitle>Oops!</AlertTitle>
+                        {histories.error.message.split("\n").map((message) => (
+                          <p>{message}</p>
+                        ))}
+                      </Alert>
+                    ) : (
+                      <Alert severity="info">
+                        <AlertTitle>Info</AlertTitle>
+                        There is no historical data available for{" "}
+                        {props.stock.symbol}
+                        &nbsp;from the past 30 days.
+                      </Alert>
+                    )}
+                  </>
+                )}
+              </>
             )}
           </DialogContent>
         </Dialog>

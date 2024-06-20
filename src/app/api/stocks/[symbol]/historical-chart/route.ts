@@ -41,6 +41,15 @@ export async function GET(
       todayStr
     );
 
+    if (apiData["Error Message"]) {
+      return Response.json(
+        {
+          message: `\nFailed to fetch stock historical chart of [${symbol}] from external API:\n${apiData["Error Message"]}`,
+        },
+        { status: 500 }
+      );
+    }
+
     /* Store data in Redis cache */
     await redis.set(redisId, JSON.stringify(apiData), "EX", REDIS_TTL);
 
@@ -68,8 +77,6 @@ async function fetchStockDataFromExternalAPI(
     );
     return await response.json();
   } catch (error) {
-    throw new Error(
-      `Failed to fetch stock historical chart of [${symbol}] from external API`
-    );
+    throw new Error();
   }
 }
