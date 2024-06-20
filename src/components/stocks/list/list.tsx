@@ -138,7 +138,7 @@ const StocksList = () => {
               {stocks.data?.map((stock) => (
                 <StocksListPerformance
                   stock={stock}
-                  key={`stock-${stock.name}`}
+                  key={`stock-${stock.symbol}`}
                 >
                   <TableRow
                     hover
@@ -151,7 +151,7 @@ const StocksList = () => {
                       <TableCell
                         width={column.width}
                         align={column.align}
-                        key={`${stock.name}-${column.label}`}
+                        key={`${stock.symbol}-${column.label}`}
                       >
                         {typeof column.value === "function"
                           ? column.value(stock)
