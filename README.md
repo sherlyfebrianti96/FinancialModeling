@@ -50,9 +50,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Feature Preview : Stock Listing
 
-For a detailed look at each feature, view the screenshots here.
+For a detailed look at each feature, [view the screenshots here](./preview/README.md).
 
-https://github.com/sherlyfebrianti96/FinancialModeling/assets/2855979/1f18d5df-9d34-4d28-996a-b999e6d115fd
-
-
+<video width="100%" controls>
+  <source src="./preview/assets/02. Speedup Footage.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
