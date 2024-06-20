@@ -40,9 +40,6 @@ This page provides a complete preview of all features.
 
 #### Displaying the UpTrend and DownTrend with colors in the Historical Chart for Stock Performance
 
-| <img src="./assets/" alt="Displaying the UpTrend and DownTrend with colors in the Historical Chart for Stock Performance" style="width: 100%;">
-|- 
-
 ##### Up Trend
 | <img src="./assets/003 Stock Performance with Up Trend.png" alt="Historical Chart for Stock Performance with Up Trend" style="width: 100%;">
 |- 
